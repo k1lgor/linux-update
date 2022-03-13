@@ -12,13 +12,11 @@ def arch():
 
 
 def debian():
-    os.system("app update && apt dist-upgrade -y")
+    os.system("apt update && apt dist-upgrade -y")
     sleep(2)
     os.system("apt autoclean && apt autoremove -y")
     sleep(2)
-    if os.system("dpkg -s aptitude &>/dev/null") != 0:
-        os.system("apt install -y aptitude")
-    os.system("apt aptitude purge ~c -y")
+    os.system("apt purge $(dpkg -l | grep '^rc' | awk '{print $2}')")
 
 
 def rhel():
@@ -41,13 +39,13 @@ def update_distro():
     distro = ''
     if os.system("cat /etc/os-release | grep -i arch &> /dev/null") == 0:
         distro = 'arch'
-    elif os.system("cat /etc/os-release | egrep -iw 'debian|ubuntu|kali' &> /dev/null") == 0:
+    if os.system("cat /etc/os-release | egrep -iw 'debian|ubuntu|kali' &> /dev/null") == 0:
         distro = 'debian'
-    elif os.system("cat /etc/os-release | grep -i rhel &> /dev/null") == 0:
+    if os.system("cat /etc/os-release | grep -i rhel &> /dev/null") == 0:
         distro = 'rhel'
-    elif os.system("cat /etc/os-release | grep -i fedora &> /dev/null") == 0:
+    if os.system("cat /etc/os-release | grep -i fedora &> /dev/null") == 0:
         distro = 'fedora'
-    elif os.system("cat /etc/os-release | grep -i suse &> /dev/null") == 0:
+    if os.system("cat /etc/os-release | grep -i suse &> /dev/null") == 0:
         distro = 'suse'
     os.system("echo 3 > /proc/sys/vm/drop_caches")
 
@@ -69,12 +67,12 @@ def update_distro():
 
 
 if __name__ == '__main__':
-    if os.geteuid() != 0:
-        exit('''
-            ERROR ==============
-            ERROR Run it as root
-            ERROR ==============
-            ''')
-    else:
-        update_distro()
-        # clear_swap()
+    # if os.geteuid() != 0:
+    #     exit('''
+    #         ERROR ==============
+    #         ERROR Run it as root
+    #         ERROR ==============
+    #         ''')
+    # else:
+    update_distro()
+    # clear_swap()
