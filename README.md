@@ -6,8 +6,12 @@
 
 **clone the repo in your home folder**
 
+`git clone https://github.com/k1lgor/linux-update.git`
+
 **make it executable**
-```chmod +x linux_update.sh```
+
+`chmod +x linux_update.sh`
 
 **run it as sudo**
-```sudo ./linux_update.sh```
+
+`sudo ./linux_update.sh`
