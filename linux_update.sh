@@ -90,6 +90,7 @@ install_updates() {
 	'fedora')
 		dnf upgrade -y
 		dnf clean all
+		echo 3 >/proc/sys/vm/drop_caches
 		;;
 		# 'slackware')
 		# 	slackpkg update
