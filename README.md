@@ -1,6 +1,6 @@
 ## linux_update.sh
 
-**A Universal update script for all major distors - Debian, Ubuntu, Arch, RHEL, Fedora and openSUSE**
+**A Universal update script for all major distros - Debian, Ubuntu, Arch, RHEL, Fedora and openSUSE**
 
 ![distros](distros.gif)
 
