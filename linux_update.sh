@@ -69,8 +69,8 @@ install_updates() {
 	echo '************************'
 	case $DISTRO in
 	'arch')
-		pacman -Syyu
-		pacman -Scc
+		yes | pacman -Syyu
+		yes | pacman -Scc
 		echo 3 >/proc/sys/vm/drop_caches
 		;;
 	'debian')
@@ -78,7 +78,7 @@ install_updates() {
 		apt dist-upgrade -y
 		apt autoclean
 		apt autoremove -y
-		dpkg -s aptitude
+		dpkg -s aptitude &>/dev/null
 		if [ $? -ne 0 ]; then
 			sudo apt install -y aptitude
 		fi
@@ -86,7 +86,7 @@ install_updates() {
 		echo 3 >/proc/sys/vm/drop_caches
 		;;
 	'rhel')
-		yum check-update
+		yum check-update -y
 		yum clean all
 		yum update -y
 		echo 3 >/proc/sys/vm/drop_caches
@@ -98,7 +98,7 @@ install_updates() {
 		echo 3 >/proc/sys/vm/drop_caches
 		;;
 	'fedora')
-		dnf upgrade
+		dnf upgrade -y
 		dnf clean all
 		;;
 	'slackware')
@@ -118,13 +118,13 @@ install_updates() {
 	esac
 }
 
-# clear_swap() {
-# 	sudo blkid | grep swap &>/dev/null
-# 	if [ $? -eq 0 ]; then
-# 		swapoff -a && swapon -a
-# 	fi
-# }
+clear_swap() {
+	sudo blkid | grep swap &>/dev/null
+	if [ $? -eq 0 ]; then
+		swapoff -a && swapon -a
+	fi
+}
 
 checking_distro
 install_updates
-# clear_swap
+clear_swap
