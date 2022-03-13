@@ -1,21 +1,11 @@
 #!/bin/bash
 
-echo '╭╮╱╱╭╮╭╮'
-echo '┃┃╱╭╯┃┃┃╱╱╱╱╱╱╱╱╭╮'
-echo '┃┃╭╋╮┃┃┃╭━━┳━━┳━┫┣━━╮'
-echo '┃╰╯╯┃┃┃┃┃╭╮┃╭╮┃╭┻┫━━┫'
-echo '┃╭╮┳╯╰┫╰┫╰╯┃╰╯┃┃╱┣━━┃'
-echo '╰╯╰┻━━┻━┻━╮┣━━┻╯╱╰━━╯'
-echo '╱╱╱╱╱╱╱╱╭━╯┃'
-echo '╱╱╱╱╱╱╱╱╰━━╯'
-echo '╱╱╱╱╱╱╱╱╭╮╱╱╭╮'
-echo '╱╱╱╱╱╱╱╱┃┃╱╭╯╰╮'
-echo '╭╮╭┳━━┳━╯┣━┻╮╭╋━━╮'
-echo '┃┃┃┃╭╮┃╭╮┃╭╮┃┃┃┃━┫'
-echo '┃╰╯┃╰╯┃╰╯┃╭╮┃╰┫┃━┫'
-echo '╰━━┫╭━┻━━┻╯╰┻━┻━━╯'
-echo '╱╱╱┃┃'
-echo '╱╱╱╰╯'
+echo '██╗  ██╗ ██╗██╗      ██████╗  ██████╗ ██████╗ '
+echo '██║ ██╔╝███║██║     ██╔════╝ ██╔═══██╗██╔══██╗'
+echo '█████╔╝ ╚██║██║     ██║  ███╗██║   ██║██████╔╝'
+echo '██╔═██╗  ██║██║     ██║   ██║██║   ██║██╔══██╗'
+echo '██║  ██╗ ██║███████╗╚██████╔╝╚██████╔╝██║  ██║'
+echo '╚═╝  ╚═╝ ╚═╝╚══════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝'
 
 if [ $EUID -ne 0 ]; then
 	echo 'ERROR ==================='
@@ -101,20 +91,20 @@ install_updates() {
 		dnf upgrade -y
 		dnf clean all
 		;;
-	'slackware')
-		slackpkg update
-		slackpkg upgrade slackpkg
-		slackpkg new-config
-		slackpkg upgrade aaa_glibc-solibs
-		slackpkg install-new
-		slackpkg upgrade-all
-		slackpkg clean-system
-		;;
-	'gentoo')
-		emaint -a sync
-		emerge --ask --verbose --update --deep --newuse @world
-		emerge --depclean --ask --verbose
-		;;
+		# 'slackware')
+		# 	slackpkg update
+		# 	slackpkg upgrade slackpkg
+		# 	slackpkg new-config
+		# 	slackpkg upgrade aaa_glibc-solibs
+		# 	slackpkg install-new
+		# 	slackpkg upgrade-all
+		# 	slackpkg clean-system
+		# 	;;
+		# 'gentoo')
+		# 	emaint -a sync
+		# 	emerge --ask --verbose --update --deep --newuse @world
+		# 	emerge --depclean --ask --verbose
+		# 	;;
 	esac
 }
 

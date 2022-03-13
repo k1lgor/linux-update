@@ -1,6 +1,8 @@
 ## linux_update.sh
 
-**A Universal update script for all major distors - Debian, Ubuntu, Arch, Gentoo, RHEL, Slackware, Fedora and SUSE**
+**A Universal update script for all major distors - Debian, Ubuntu, Arch, RHEL, Fedora and openSUSE**
+
+![distros](distros.gif)
 
 ### Usage
 
