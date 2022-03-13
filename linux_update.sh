@@ -73,7 +73,7 @@ install_updates() {
 		pacman -Scc
 		echo 3 >/proc/sys/vm/drop_caches
 		;;
-	'debian | ubuntu | kali')
+	'debian')
 		apt update
 		apt dist-upgrade -y
 		apt autoclean
