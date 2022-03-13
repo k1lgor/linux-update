@@ -5,28 +5,28 @@ import os
 import sys
 
 
-def check_distro(self, distro):
+def check_distro(distro):
     print('Checking up your distro...')
-    self.distro = ''
     if os.system("cat /etc/os-release | grep -i arch &> /dev/null") == 0:
-        self.distro = 'arch'
+        distro = 'arch'
     elif os.system("cat /etc/os-release | egrep -iw 'debian|ubuntu|kali' &> /dev/null") == 0:
-        self.distro = 'debian'
+        distro = 'debian'
     elif os.system("cat /etc/os-release | grep -i rhel &> /dev/null") == 0:
-        self.distro = 'rhel'
+        distro = 'rhel'
     elif os.system("cat /etc/os-release | grep -i fedora &> /dev/null") == 0:
-        self.distro = 'fedora'
+        distro = 'fedora'
     elif os.system("cat /etc/os-release | grep -i suse &> /dev/null") == 0:
-        self.distro = 'suse'
+        distro = 'suse'
+    return distro
 
 
-def update_distro(self):
+def update_distro():
     print('Updating your distro...')
-    if self.distro == 'arch':
+    if distro == 'arch':
         os.system("yes | pacman -Syyu")
         sleep(2)
         os.system("yes | pacman -Scc")
-    elif self.distro == 'debian':
+    elif distro == 'debian':
         os.system("app update && apt dist-upgrade -y")
         sleep(2)
         os.system("apt autoclean && apt autoremove -y")
@@ -34,15 +34,15 @@ def update_distro(self):
         if os.system("dpkg -s aptitude &>/dev/null") != 0:
             os.system("apt install -y aptitude")
         os.system("apt aptitude purge ~c -y")
-    elif self.distro == 'rhel':
+    elif distro == 'rhel':
         os.system("yum check-update -y")
         sleep(2)
         os.system("yum clean all && yum update -y")
-    elif self.distro == 'suse':
+    elif distro == 'suse':
         os.system("zypper refresh && zypper update -y")
         sleep(2)
         os.system("zypper cc -a")
-    elif self.distro == 'fedora':
+    elif distro == 'fedora':
         os.system("dnf upgrade -y && dnf clean all")
     os.system("echo 3 > /proc/sys/vm/drop_caches")
 
@@ -53,6 +53,7 @@ def update_distro(self):
 
 
 if __name__ == '__main__':
+    distro = ''
     if os.geteuid() != 0:
         exit('''
             ERROR ==============
@@ -60,6 +61,6 @@ if __name__ == '__main__':
             ERROR ==============
             ''')
     else:
-        check_distro()
-        update_distro()
+        check_distro(distro)
+        update_distro(distro)
         # clear_swap()
