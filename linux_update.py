@@ -38,17 +38,29 @@ def suse():
 
 
 def update_distro():
+    distro = ''
     if os.system("cat /etc/os-release | grep -i arch &> /dev/null") == 0:
-        arch()
+        distro = 'arch'
     elif os.system("cat /etc/os-release | egrep -iw 'debian|ubuntu|kali' &> /dev/null") == 0:
-        debian()
+        distro = 'debian'
     elif os.system("cat /etc/os-release | grep -i rhel &> /dev/null") == 0:
-        rhel()
+        distro = 'rhel'
     elif os.system("cat /etc/os-release | grep -i fedora &> /dev/null") == 0:
-        fedora()
+        distro = 'fedora'
     elif os.system("cat /etc/os-release | grep -i suse &> /dev/null") == 0:
-        suse()
+        distro = 'suse'
     os.system("echo 3 > /proc/sys/vm/drop_caches")
+
+    if distro == 'arch':
+        arch()
+    elif distro == 'debian':
+        debian()
+    elif distro == 'rhel':
+        rhel()
+    elif distro == 'fedora':
+        fedora()
+    elif distro == 'suse':
+        suse()
 
 
 # def clear_swap():
