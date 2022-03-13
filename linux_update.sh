@@ -74,8 +74,8 @@ install_updates() {
 		echo 3 >/proc/sys/vm/drop_caches
 		;;
 	'debian | ubuntu | kali')
-		apt update &&
-			apt dist-upgrade -y
+		apt update
+		apt dist-upgrade -y
 		apt autoclean
 		apt autoremove -y
 		dpkg -s aptitude
@@ -118,13 +118,13 @@ install_updates() {
 	esac
 }
 
-clear_swap() {
-	sudo blkid | grep swap
-	if [ $? -eq 0 ]; then
-		swapoff -a && swapon -a
-	fi
-}
+# clear_swap() {
+# 	sudo blkid | grep swap &>/dev/null
+# 	if [ $? -eq 0 ]; then
+# 		swapoff -a && swapon -a
+# 	fi
+# }
 
 checking_distro
 install_updates
-clear_swap
+# clear_swap
