@@ -5,11 +5,13 @@ import os
 
 
 def update():
+    """Update method"""
+
     print('''
-          =====================
-          Updating has begun...
-          =====================
-          ''')
+        =====================
+        Updating has begun...
+        =====================
+        ''')
     os.system("yum check-update -y")
     sleep(2)
     os.system("yum clean all && yum update -y")
@@ -27,7 +29,7 @@ if __name__ == '__main__':
     else:
         update()
         print('''
-          ========================
-          Updating has finished...
-          ========================
-          ''')
+            ========================
+            Updating has finished...
+            ========================
+            ''')

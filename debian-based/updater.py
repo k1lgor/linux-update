@@ -5,11 +5,13 @@ import os
 
 
 def update():
+    """Update method"""
+
     print('''
-          =====================
-          Updating has begun...
-          =====================
-          ''')
+        =====================
+        Updating has begun...
+        =====================
+        ''')
     os.system("apt update && apt dist-upgrade -y")
     sleep(2)
     os.system("apt autoclean && apt autoremove -y")
@@ -30,7 +32,7 @@ if __name__ == '__main__':
     else:
         update()
         print('''
-          ========================
-          Updating has finished...
-          ========================
-          ''')
+            ========================
+            Updating has finished...
+            ========================
+            ''')
