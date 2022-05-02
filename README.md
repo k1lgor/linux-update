@@ -12,7 +12,10 @@
 
 **make it executable**
 
-`chmod +x linux_update.sh`
+```
+cd linux-update
+chmod +x linux_update.sh
+```
 
 **run it as sudo**
 
