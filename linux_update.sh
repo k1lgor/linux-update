@@ -92,20 +92,20 @@ install_updates() {
 		dnf clean all
 		echo 3 >/proc/sys/vm/drop_caches
 		;;
-		# 'slackware')
-		# 	slackpkg update
-		# 	slackpkg upgrade slackpkg
-		# 	slackpkg new-config
-		# 	slackpkg upgrade aaa_glibc-solibs
-		# 	slackpkg install-new
-		# 	slackpkg upgrade-all
-		# 	slackpkg clean-system
-		# 	;;
-		# 'gentoo')
-		# 	emaint -a sync
-		# 	emerge --ask --verbose --update --deep --newuse @world
-		# 	emerge --depclean --ask --verbose
-		# 	;;
+	'slackware')
+		slackpkg update
+		slackpkg upgrade slackpkg
+		slackpkg new-config
+		slackpkg upgrade aaa_glibc-solibs
+		slackpkg install-new
+		slackpkg upgrade-all
+		slackpkg clean-system
+		;;
+	'gentoo')
+		emaint -a sync
+		emerge --ask --verbose --update --deep --newuse @world
+		emerge --depclean --ask --verbose
+		;;
 	esac
 }
 
