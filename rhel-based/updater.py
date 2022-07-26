@@ -3,6 +3,8 @@
 from time import sleep
 import os
 
+from pip import main
+
 
 def update():
     """Update method"""
@@ -19,7 +21,8 @@ def update():
     os.system("echo 3 > /proc/sys/vm/drop_caches")
 
 
-if __name__ == '__main__':
+def main():
+    """Checks if you run it as sudo or not"""
     if os.geteuid() != 0:
         exit('''
             ERROR ==============
@@ -33,3 +36,7 @@ if __name__ == '__main__':
             Updating has finished...
             ========================
             ''')
+
+
+if __name__ == '__main__':
+    main()

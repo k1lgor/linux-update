@@ -6,7 +6,6 @@ import os
 
 def update():
     """Update method"""
-
     print('''
         =====================
         Updating has begun...
@@ -22,7 +21,8 @@ def update():
     os.system("echo 3 > /proc/sys/vm/drop_caches")
 
 
-if __name__ == '__main__':
+def main():
+    """Checks if you run it as sudi or not"""
     if os.geteuid() != 0:
         exit('''
             ERROR ==============
@@ -36,3 +36,7 @@ if __name__ == '__main__':
             Updating has finished...
             ========================
             ''')
+
+
+if __name__ == '__main__':
+    main()
